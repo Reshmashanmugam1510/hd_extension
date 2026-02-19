@@ -1,11 +1,146 @@
-body {
-  width: 250px;
-  font-family: Arial;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  width: 400px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px;
+  background: #f5f5f5;
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+button#analyzeBtn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button#analyzeBtn:hover {
+  background: linear-gradient(135deg, #b71c1c, #8b0000);
+}
+
+button#analyzeBtn:active {
+  transform: scale(0.98);
+}
+
+#result {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.result-card {
+  background: white;
+  border-left: 4px solid #d32f2f;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.result-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.result-field:last-child {
+  border-bottom: none;
+}
+
+.result-label {
+  font-weight: bold;
+  color: #555;
+  min-width: 100px;
+}
+
+.result-value {
+  color: #333;
+  text-align: right;
+  flex: 1;
+  margin-left: 10px;
+  word-wrap: break-word;
+}
+
+.severity-high {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.severity-medium {
+  color: #f57c00;
+  font-weight: bold;
+}
+
+.severity-low {
+  color: #388e3c;
+  font-weight: bold;
+}
+
+.severity-safe {
+  color: #388e3c;
+  font-weight: bold;
+}
+
+.warning {
+  background: #fff3cd;
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+.error {
+  background: #f8d7da;
+  border-left-color: #d32f2f;
+  color: #721c24;
+}
+
+.success {
+  background: #d4edda;
+  border-left-color: #388e3c;
+  color: #155724;
+}
+
+.language-tag {
+  display: inline-block;
+  background: #2196F3;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.translation-box {
+  background: #f0f4ff;
+  border-left: 3px solid #2196F3;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 3px;
+  font-style: italic;
+  font-size: 12px;
+  color: #555;
+}
+
 textarea {
   width: 100%;
   height: 80px;
 }
-button {
-  width: 100%;
+
+textarea, button {
+  font-family: inherit;
 }

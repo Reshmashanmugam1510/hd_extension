@@ -30,10 +30,39 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
     const result = await response.json();
 
-    let message = `Severity: ${result.severity}\nConfidence: ${result.confidence || "N/A"}`;
-
+    // Build enhanced message with language and translation
+    let message = "";
+    
     if (result.sexual_harassment) {
-      message = "🚫 SEXUAL HARASSMENT DETECTED\n\n" + message;
+      message += "🚫 SEXUAL HARASSMENT DETECTED\n\n";
+    } else if (result.severity === "High") {
+      message += "⚠️ ABUSIVE CONTENT DETECTED\n\n";
+    }
+    
+    // Add language info
+    if (result.language && result.language !== "Unknown") {
+      message += `🌐 Language: ${result.language}\n`;
+    }
+    
+    // Add original text if non-English
+    if (result.original_text && result.language && result.language !== "English" && result.language !== "Unknown") {
+      message += `📝 Original: ${result.original_text}\n`;
+    }
+    
+    // Add translation/meaning
+    if (result.translated_text && result.translated_text !== selectedText && result.language !== "English" && result.language !== "Unknown") {
+      message += `💬 Meaning: ${result.translated_text}\n`;
+    }
+    
+    message += `\nSeverity: ${result.severity}`;
+    message += `\nConfidence: ${result.confidence || "N/A"}%`;
+    
+    // Add detected words if any
+    if (result.sexual_words && result.sexual_words.length > 0) {
+      message += `\n🔴 Sexual Words: ${result.sexual_words.join(", ")}`;
+    }
+    if (result.abusive_words && result.abusive_words.length > 0) {
+      message += `\n🟠 Abusive Words: ${result.abusive_words.join(", ")}`;
     }
 
     chrome.scripting.executeScript({
